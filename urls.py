@@ -1,17 +1,13 @@
 from django.conf.urls.defaults import patterns, include, url
-
-# Uncomment the next two lines to enable the admin:
-# from django.contrib import admin
-# admin.autodiscover()
+from django.contrib import admin
+admin.autodiscover()
 
 urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'pinshout.views.home', name='home'),
-    # url(r'^pinshout/', include('pinshout.foo.urls')),
-
-    # Uncomment the admin/doc line below to enable admin documentation:
-    # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
-
-    # Uncomment the next line to enable the admin:
-    # url(r'^admin/', include(admin.site.urls)),
+    url(r'^$', 'pinshout_app.views.shout'),
+    url(r'^shout$', 'pinshout_app.views.shout'),
+    
+    url(r'^api/shouts/new$', 'pinshout_app.api.new_shout'),
+    url(r'^api/shouts/get$', 'pinshout_app.api.get_shouts'),
+    
+    url(r'^admin/', include(admin.site.urls)),
 )
