@@ -1,4 +1,5 @@
-var lat, lng;
+var lat, lng, radius;
+radius = 1;
 
 $(function() {
   get_location();
@@ -64,7 +65,7 @@ function form_error(input, message) {
 }
 
 function get_shouts() {
-  $.get("/api/shouts/get", { lat: lat, lng: lng }, function(data) {
+  $.get("/api/shouts/get", { lat: lat, lng: lng, radius: radius }, function(data) {
     var shouts = $.parseJSON(data);
     for(i in shouts) {
       add_shout(shouts[i]);

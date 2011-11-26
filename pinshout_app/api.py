@@ -32,8 +32,7 @@ def new_shout(request):
 def get_shouts(request):
     lat = float(request.GET['lat'])
     lng = float(request.GET['lng'])
-    
-    radius = 1
+    radius = float(request.GET['radius'])
 
     lat_low = str(lat - radius)
     lat_high = str(lat + radius)
