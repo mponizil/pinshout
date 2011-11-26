@@ -20,6 +20,9 @@ def new_shout(request):
     shout.save()
     
     response = {
+        'date_created': shout.date_created.strftime("%b %d at %I:%M:%S%p"),
+        'lat': str(shout.lat),
+        'lng': str(shout.lng),
         'author': author,
         'message': message
     }
@@ -30,7 +33,7 @@ def get_shouts(request):
     lat = float(request.GET['lat'])
     lng = float(request.GET['lng'])
     
-    radius = 0.1
+    radius = 1
 
     lat_low = lat - radius
     lat_high = lat + radius
@@ -42,7 +45,7 @@ def get_shouts(request):
     response = []
     for shout in shouts:
         response.append({
-            'date_created': shout.date_created.strftime("%Y-%m-%d %H:%M:%S"),
+            'date_created': shout.date_created.strftime("%b %d at %I:%M:%S%p"),
             'lat': str(shout.lat),
             'lng': str(shout.lng),
             'author': shout.author,

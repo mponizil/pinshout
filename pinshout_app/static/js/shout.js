@@ -10,7 +10,7 @@ function get_location() {
     function(pos){
       lat = pos.coords.latitude;
       lng = pos.coords.longitude;
-      $("#map").append('<iframe width="450" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q='+lat+'+'+lng+'&amp;aq=&amp;vpsrc=0&amp;ie=UTF8&amp;t=m&amp;z=14&amp;output=embed"></iframe>');
+      new_map(lat,lng);
       get_shouts();
     },
     function(){
@@ -18,6 +18,16 @@ function get_location() {
       $("#no-location").show();
     }
   );
+}
+
+function new_map(lat,lng) {
+  var prev_map = $("#map img");
+  prev_map.css("z-index",2);
+  
+  var new_map = $('<img width="450" height="350" src="http://maps.google.com/maps/api/staticmap?sensor=false&center='+lat+','+lng+'&zoom=14&size=450x350&markers=color:blue|label:S|'+lat+','+lng+'" />').css("z-index",1);
+  
+  $("#map").append(new_map);
+  prev_map.fadeOut();
 }
 
 function shout_init() {
@@ -37,8 +47,7 @@ function shout_init() {
     
     $.post("/api/shouts/new", { lat: lat, lng: lng, author: author.val(), message: message.val() }, function(data) {
       var new_shout = $.parseJSON(data);
-      var shout_div = $('<div class="single-shout"><h3>' + new_shout.author + '</h3><p>' + new_shout.message + '</p></div>');
-      $("#view").prepend(shout_div);
+      add_shout(new_shout);
       
       message.val('');
       message.focus();
@@ -58,8 +67,16 @@ function get_shouts() {
   $.get("/api/shouts/get", { lat: lat, lng: lng }, function(data) {
     var shouts = $.parseJSON(data);
     for(i in shouts) {
-      var shout_div = $('<div class="single-shout"><h3>' + shouts[i].author + '</h3><p class="coords">(' + shouts[i].lat + ', ' + shouts[i].lng + ')</p><p class="message">' + shouts[i].message + '</p></div>');
-      $("#view").prepend(shout_div);
+      add_shout(shouts[i]);
     }
+  })
+}
+
+function add_shout(shout) {
+  var shout_div = $('<div class="single-shout"><div class="shout-header"><h3>' + shout.author + '</h3></div><div class="shout-info"><p class="date">' + shout.date_created + '</p><p class="coords">(' + shout.lat + ', ' + shout.lng + ')</p></div><div style="clear:both;"></div><p class="message">' + shout.message + '</p></div>');
+  $("#view").prepend(shout_div);
+  
+  shout_div.click(function() {
+    new_map(shout.lat,shout.lng);
   })
 }

@@ -10,6 +10,12 @@ textarea {
   padding:4px;
   border:1px solid #ccc;
 }
+h1, h2, h3, h4, h5, h6 {
+  margin:0;
+}
+p {
+  margin:0 0 4px 0;
+}
 
 .error {
   display:none;
@@ -24,23 +30,26 @@ textarea {
   text-align:center;
   margin-bottom:20px;
 }
+#header h1 {
+  font-size:36px;
+  margin:10px 0;
+}
 
 #post {
   width:500px;
   float:left;
 }
-#view {
-  width:278px;
-  float:right;
-  height:600px;
-  overflow:auto;
-  border:1px solid #ccc;
-  padding:10px;
-}
 #map {
   width:450px;
+  height:350px;
   margin-bottom:20px;
   border:1px solid #ccc;
+  position:relative;
+}
+#map img {
+  position:absolute;
+  top:0;
+  left:0;
 }
 #shout-form {
   width:300px;
@@ -56,6 +65,33 @@ textarea {
   width:80px;
   height:40px;
   font-size:30px;
+}
+
+#view {
+  width:278px;
+  float:right;
+  height:600px;
+  overflow:auto;
+  border:1px solid #ccc;
+  padding:10px;
+}
+#view .single-shout {
+  padding:10px 2px;
+  border-bottom:1px solid #ccc;
+  cursor:pointer;
+}
+#view .single-shout:hover {
+  background-color:#eaeaea;
+}
+#view .shout-header {
+  float:left;
+}
+#view .shout-info {
+  font-size:10px;
+  font-style:italic;
+  color:#606060;
+  float:right;
+  text-align:right;
 }
 
 #no-location {
