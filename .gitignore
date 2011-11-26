@@ -1,2 +1,4 @@
 pinshout.db
 *.pyc
+apache
+pinshout_app/static/admin
