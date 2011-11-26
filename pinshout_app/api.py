@@ -35,10 +35,10 @@ def get_shouts(request):
     
     radius = 1
 
-    lat_low = lat - radius
-    lat_high = lat + radius
-    lng_low = lng - radius
-    lng_high = lng + radius
+    lat_low = str(lat - radius)
+    lat_high = str(lat + radius)
+    lng_low = str(lng - radius)
+    lng_high = str(lng + radius)
     
     shouts = Shout.objects.filter(lat__gte=lat_low,lat__lte=lat_high,lng__gte=lng_low,lng__lte=lng_high)[:100]
     
