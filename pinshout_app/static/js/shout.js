@@ -1,5 +1,4 @@
-var lat, lng, radius;
-radius = 1;
+var lat, lng;
 
 $(function() {
   get_location();
@@ -11,8 +10,9 @@ function get_location() {
     function(pos){
       lat = pos.coords.latitude;
       lng = pos.coords.longitude;
-      new_map(lat,lng);
-      get_shouts();
+      new_map(lat, lng);
+      get_shouts(lat, lng, $("#radius").val());
+      radius_init();
     },
     function(){
       $("#yes-location").hide();
@@ -64,9 +64,20 @@ function form_error(input, message) {
   input.focus();
 }
 
-function get_shouts() {
+function radius_init() {
+  $("#update_radius").submit(function() {
+    var radius = $("#radius").val();
+    if (radius) {
+      get_shouts(lat, lng, radius);
+    }
+    return false;
+  })
+}
+
+function get_shouts(lat, lng, radius) {
   $.get("/api/shouts/get", { lat: lat, lng: lng, radius: radius }, function(data) {
     var shouts = $.parseJSON(data);
+    $("#shouts").empty();
     for(i in shouts) {
       add_shout(shouts[i]);
     }
@@ -75,7 +86,7 @@ function get_shouts() {
 
 function add_shout(shout) {
   var shout_div = $('<div class="single-shout"><div class="shout-header"><h3>' + shout.author + '</h3></div><div class="shout-info"><p class="date">' + shout.date_created + '</p><p class="coords">(' + shout.lat + ', ' + shout.lng + ')</p></div><div style="clear:both;"></div><p class="message">' + shout.message + '</p></div>');
-  $("#view").prepend(shout_div);
+  $("#shouts").prepend(shout_div);
   
   shout_div.click(function() {
     new_map(shout.lat,shout.lng);
