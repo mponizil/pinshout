@@ -14,4 +14,4 @@ class Shout(models.Model):
         super(Shout, self).save()
     
     def __unicode__(self):
-        return "%s: %s" % (self.author, self.message[:10])
+        return "%s: %s" % (self.author, self.message[:20])
