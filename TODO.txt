@@ -1,0 +1,6 @@
+TODO:
+
+- Change pinshout_app to something else
+- SQLite migrations
+- Figure out why auto_add_now is evil
+- Move over to MySQL at some point
