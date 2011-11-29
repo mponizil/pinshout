@@ -1,0 +1,104 @@
+body {
+  margin:0;
+  padding:0;
+  font-family:Arial,Tahoma,sans-serif;
+  font-size:14px;
+}
+input[type='text'],
+textarea {
+  font-size:14px;
+  padding:4px;
+  border:1px solid #ccc;
+}
+input[type='submit'],
+button {
+  font-size:1.2em;
+}
+h1, h2, h3, h4, h5, h6 {
+  margin:0;
+}
+p {
+  margin:0 0 4px 0;
+}
+
+.error {
+  display:none;
+  color:red;
+}
+
+#container {
+  width:800px;
+  margin:0 auto;
+}
+#header {
+  text-align:center;
+  margin-bottom:20px;
+}
+#header h1 {
+  font-size:36px;
+  margin:10px 0;
+}
+
+#post {
+  width:500px;
+  float:left;
+}
+#map {
+  width:450px;
+  height:350px;
+  margin-bottom:20px;
+  border:1px solid #ccc;
+  position:relative;
+}
+#map img {
+  position:absolute;
+  top:0;
+  left:0;
+}
+#shout-form {
+  width:300px;
+}
+#shout-form input[type='text'] {
+  width:100%;
+}
+#shout-form textarea {
+  width:100%;
+  height:100px;
+}
+
+#view {
+  width:278px;
+  float:right;
+  height:600px;
+  overflow:auto;
+  border:1px solid #ccc;
+  padding:10px;
+}
+#control {
+  text-align:center;
+}
+#radius {
+  width:40px;
+}
+#shouts .single-shout {
+  padding:10px 2px;
+  border-bottom:1px solid #ccc;
+  cursor:pointer;
+}
+#shouts .single-shout:hover {
+  background-color:#eaeaea;
+}
+#shouts .shout-header {
+  float:left;
+}
+#shouts .shout-info {
+  font-size:10px;
+  font-style:italic;
+  color:#606060;
+  float:right;
+  text-align:right;
+}
+
+#no-location {
+  display:none;
+}
