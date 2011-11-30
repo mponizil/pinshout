@@ -25,7 +25,7 @@ function new_map(lat,lng) {
   var prev_map = $("#map img");
   prev_map.css("z-index",2);
   
-  var new_map = $('<img width="450" height="350" src="http://maps.google.com/maps/api/staticmap?sensor=false&center='+lat+','+lng+'&zoom=14&size=450x350&markers=color:blue|label:S|'+lat+','+lng+'" />').css("z-index",1);
+  var new_map = $('<img width="450" height="350" src="http://maps.google.com/maps/api/staticmap?sensor=false&center='+lat+','+lng+'&zoom=14&size=450x350&markers=color:blue|label:S|'+lat+','+lng+'" />').css("x-index",1);
   
   $("#map").append(new_map);
   prev_map.fadeOut();
