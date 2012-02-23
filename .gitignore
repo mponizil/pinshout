@@ -1,3 +1,4 @@
+.DS_Store
 pinshout.db
 *.pyc
 apache
